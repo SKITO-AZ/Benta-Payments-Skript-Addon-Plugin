@@ -1,0 +1,12 @@
+name: Benta
+version: '${project.version}'
+main: im.benta.minecraft.benta.Benta
+api-version: 1.18
+authors: [ SKITO ]
+description: Benta Payments Plugin For Skripter
+website: https://benta.im
+depend: [ Skript ]
+commands:
+  후원:
+    description: Benta 후원 결제 페이지를 생성합니다.
+    usage: /후원 을 명령어로 치시면 됩니다.
