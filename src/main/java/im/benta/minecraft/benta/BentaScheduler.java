@@ -26,13 +26,12 @@ public class BentaScheduler implements Runnable {
         if (response == null) {
             this.plugin.getLogger().info(this.plugin.getPrefix() + "Benta API 서버와의 연결에 실패하여 결제 정보를 가져오지 못 하였습니다.");
         } else if (response.get("error") == null) {
-            JSONObject payment = (JSONObject) response.get("payment");
             String identifier = (String) response.get("identifier");
-            long paidAmount = (long) payment.get("paidAmount");
+            long paidAmount = (long) response.get("paid_amount");
 
-            String PAYMENT_METHOD = (String) payment.get("method");
+            String PAYMENT_METHOD = (String) response.get("method");
             if (PAYMENT_METHOD.equals("CULTURE")) {
-                if ((long) payment.get("paidAmount") == 0L)
+                if (paidAmount == 0L)
                     this.plugin.getServer().getScheduler().runTask(this.plugin, new Runnable() {
                         @Override
                         public void run() {
@@ -53,7 +52,7 @@ public class BentaScheduler implements Runnable {
                         Bukkit.getServer().getPluginManager().callEvent(new EvtDepositSuccess(identifier, paidAmount));
                     }
                 });
-        } else if (!response.get("error").equals("NO_PROGRESS_PAYMENTS")) {
+        } else if (!response.get("error").equals("NO_PROCESSED_PAYMENT")) {
             this.plugin.getLogger().info(this.plugin.getPrefix() + "오류 코드 : " + response.get("error"));
             this.plugin.getLogger().info(this.plugin.getPrefix() + "오류 메시지 : " + response.get("error_msg"));
         }

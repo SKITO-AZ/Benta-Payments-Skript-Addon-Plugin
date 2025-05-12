@@ -47,7 +47,7 @@ public class BentaCommand implements CommandExecutor {
                     }
                     else {
                         player.sendMessage(plugin.getPrefix() + "아래의 링크를 클릭하여 결제를 진행하여 주세요.");
-                        player.sendMessage(plugin.getPrefix() + "https://benta.im/checkout/" + response.get("payToken"));
+                        player.sendMessage(plugin.getPrefix() + "https://pay.benta.im/" + response.get("payToken"));
                     }
                 }
             });

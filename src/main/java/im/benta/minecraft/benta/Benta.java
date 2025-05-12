@@ -47,7 +47,7 @@ public final class Benta extends JavaPlugin {
         }, 0);
         EventValues.registerEventValue(EvtCulturelandSuccess.class, Number.class, new Getter<Number, EvtCulturelandSuccess>() {
             public Number get(EvtCulturelandSuccess e) {
-                return e.getPaidAmount();
+                return (Number) e.getPaidAmount();
             }
         }, 0);
 
@@ -66,7 +66,7 @@ public final class Benta extends JavaPlugin {
         }, 0);
         EventValues.registerEventValue(EvtDepositSuccess.class, Number.class, new Getter<Number, EvtDepositSuccess>() {
             public Number get(EvtDepositSuccess e) {
-                return e.getPaidAmount();
+                return (Number) e.getPaidAmount();
             }
         }, 0);
 
